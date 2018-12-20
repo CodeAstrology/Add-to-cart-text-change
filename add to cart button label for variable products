@@ -1,0 +1,26 @@
+<?php
+// Change add to cart text on archives depending on product type
+add_filter( 'woocommerce_product_add_to_cart_text' , 'custom_woocommerce_product_add_to_cart_text' );
+function custom_woocommerce_product_add_to_cart_text() {
+	global $product;
+	
+	$product_type = $product->product_type;
+	
+	switch ( $product_type ) {
+		case 'external':
+			return __( 'Take me to their site!', 'woocommerce' );
+		break;
+		case 'grouped':
+			return __( 'VIEW THE GOOD STUFF', 'woocommerce' );
+		break;
+		case 'simple':
+			return __( 'WANT. NEED. ADD!', 'woocommerce' );
+		break;
+		case 'variable':
+			return __( 'Select the variations, yo!', 'woocommerce' );
+		break;
+		default:
+			return __( 'Read more', 'woocommerce' );
+	}
+	
+}
